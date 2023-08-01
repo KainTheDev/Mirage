@@ -56,5 +56,3 @@ for (const file of eventFiles) {
 client.on('error', (error) => console.log(error));
 
 client.login(process.env.token);
-//image search api
-//https://notsobot.com/api/search/google/images?query={search}

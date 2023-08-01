@@ -7,10 +7,7 @@ module.exports = ({ client, db }) => {
     for(const attachment of message.attachments) {
       if(["png", "jpg", "jpeg", "tiff"].includes(attachment[1].contentType.split("/")[1])) return images.push(attachment)
     }
-    if (message.author.bot) {
-      await deleteMessage(imagesChannel, message.id, 500)
-      return;
-    }else if(!message.author.bot && images.length === 0) {
+    if(!message.author.bot && images.length === 0) {
       await deleteMessage(imagesChannel, message.id, 500)
       return;
     }

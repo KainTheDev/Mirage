@@ -16,7 +16,7 @@ module.exports = ({ client }) => {
       .setImage('https://i.kym-cdn.com/photos/images/original/000/717/712/7a1.gif')
       .setColor('#FF0000')
       .setThumbnail(userAvatarURL)
-      .setFooter(`Joined at: ${member.joinedAt.toUTCString()} | ${serverName}`, serverAvatarURL);
+      .setFooter({text: `Joined at: ${member.joinedAt.toUTCString()} | ${serverName}`, iconURL: serverAvatarURL});
 
     try {
       await webhook.send({ content: `<@${member.id}>`, embeds: [embed] });
@@ -26,6 +26,7 @@ module.exports = ({ client }) => {
   }
 
   client.on('guildMemberAdd', (member) => {
+    if(member.guild.id !== webhook.guild.id) return;
     sendWelcomeEmbed(member);
   });
 };

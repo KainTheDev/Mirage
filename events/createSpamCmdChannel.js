@@ -1,4 +1,5 @@
 module.exports = ({client}) => {
+    client.on("ready", () => {
     const {getChannel} = client.getFunctions()
     const { ButtonBuilder, ButtonStyle, ActionRowBuilder, WebhookClient } = require('discord.js');
     const channel = getChannel("create-channel")
@@ -13,4 +14,5 @@ module.exports = ({client}) => {
         )
     // Send a message using the webhook
     if(channel.messages.cache.length === 0) return webhookClient.send({components: [row]});
+})
 }

@@ -13,6 +13,6 @@ module.exports = ({client}) => {
         .setStyle(ButtonStyle.Success)
         )
     // Send a message using the webhook
-    if([...channel.messages.cache].length === 0) return webhookClient.send({components: [row]});
+    if([...channel.messages.cache].length === 0) return webhookClient.send({content: "Click to the button to create a new channel! (customizable)", components: [row]});
 })
 }

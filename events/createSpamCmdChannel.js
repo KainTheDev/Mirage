@@ -1,9 +1,8 @@
 module.exports = ({client}) => {
     client.on("ready", () => {
     const {getChannel} = client.getFunctions()
-    const { ButtonBuilder, ButtonStyle, ActionRowBuilder, WebhookClient } = require('discord.js');
+    const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
     const channel = getChannel("create-channel")
-    const webhookClient = new WebhookClient({ url: "https://discord.com/api/webhooks/1136649645557305384/_l_EVWPMdRD4xlIwHkjPVvCjSzIk-hEDnVZieI7zyF-TGmyIFn1JiH8Qt1_4ZMxuX6nm" });
     const row = new ActionRowBuilder()
     .setComponents(
         new ButtonBuilder()
@@ -13,6 +12,6 @@ module.exports = ({client}) => {
         .setStyle(ButtonStyle.Success)
         )
     // Send a message using the webhook
-    if([...channel.messages.cache].length === 0) return webhookClient.send({content: "Click to the button to create a new channel! (customizable)", components: [row]});
+    if([...channel.messages.cache].length === 0) return channel.send({content: "Click to the button to create a new channel! (customizable)", components: [row]});
 })
 }

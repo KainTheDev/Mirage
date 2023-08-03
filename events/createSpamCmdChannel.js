@@ -13,7 +13,6 @@ module.exports = ({client}) => {
         .setStyle(ButtonStyle.Success)
         )
     // Send a message using the webhook
-    console.log(channel.messages.cache)
-    if(channel.messages.cache.length === 0) return webhookClient.send({components: [row]});
+    if([...channel.messages.cache].length === 0) return webhookClient.send({components: [row]});
 })
 }

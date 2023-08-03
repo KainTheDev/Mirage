@@ -1,5 +1,6 @@
 module.exports = ({ client, db }) => {
   client.on('messageReactionAdd', async (reaction, user) => {
+    if(reaction.guild.id !== client.guilds.cache.find(guild => guild.name === "CLIMAX").id) return;
     const {getWebhook, getChannel} = client.getFunctions()
     const webhook = getWebhook("starboard")
     const { message, emoji } = reaction;

@@ -1,5 +1,6 @@
 module.exports = ({client, prefix, db}) => {
   client.on('interactionCreate', async (interaction) => {
+    if(interaction.guild.id !== client.guilds.cache.find(guild => guild.name === "CLIMAX").id) return;
     if (!interaction.isCommand()) return;
     // Get the command from the client's command collection
     const slashCommand = client.slashCommands.get(interaction.commandName);

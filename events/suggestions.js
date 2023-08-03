@@ -1,5 +1,6 @@
 module.exports = ({client}) => {
   client.on("messageCreate", async (message) => {
+    if(message.guild.id !== client.guilds.cache.find(guild => guild.name === "CLIMAX").id) return;
     const {getChannel} = client.getFunctions()
     const starboardChannel = getChannel("suggestions")
     if(message.channel.id === starboardChannel.id && message.author.bot) {

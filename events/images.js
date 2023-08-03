@@ -1,6 +1,7 @@
 module.exports = ({ client, db }) => {
   const { deleteMessage, getChannel } = client.getFunctions()
   client.on('messageCreate', async (message) => {
+    if(message.guild.id !== client.guilds.cache.find(guild => guild.name === "CLIMAX").id) return;
     const imagesChannel = getChannel("images")
     const description = message.content
     const images = []

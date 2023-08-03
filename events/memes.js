@@ -3,6 +3,7 @@ module.exports = ({ client, db }) => {
   const webhook = getWebhook("memes")
   const {AttachmentBuilder} = require("discord.js")
   client.on('messageCreate', async (message) => {
+    if(message.guild.id !== client.guilds.cache.find(guild => guild.name === "CLIMAX").id) return;
     const memesChannel = getChannel("memes")
     const description = message.content
     let image = [...message.attachments].map(attachment => {

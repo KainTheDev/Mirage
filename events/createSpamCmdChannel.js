@@ -1,4 +1,5 @@
 module.exports = ({client}) => {
+    const {ChannelType} = require("discord.js")
     client.on("messageCreate", (message) => {
     if(message.guild.name !== "CLIMAX") return;
     const {getChannel} = client.getFunctions()
@@ -25,7 +26,7 @@ client.on('interactionCreate', async (interaction) => {
   
       try {
         const createdChannel = await guild.channels.create(channelName, {
-          type: 'GUILD_TEXT', // Change this to the desired channel type
+          type: ChannelType.GuildText, // Change this to the desired channel type
         });
   
         await interaction.reply({ content: `Channel ${createdChannel} has been created!`, ephemeral: true });

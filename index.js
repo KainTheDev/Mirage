@@ -34,7 +34,7 @@ client.slashCommands = new Collection();
 const prefix = client.config.bot.prefix;
 
 const db = new QuickDB(); // Creates a json.sqlite file in the root folder
-console.log(client)
+console.log(client.guilds.cache)
 console.log(client.channels.cache)
 client.getFunctions = function () {
   const functions = fs.readdirSync('./functions').filter(file => file.endsWith('.js')).map(file => {

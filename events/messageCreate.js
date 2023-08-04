@@ -2,6 +2,7 @@ const ms = require('ms');
 const {EmbedBuilder} = require("discord.js")
 module.exports = ({ client, prefix, db }) => {
   client.on('messageCreate', async (message) => {
+    if(!message.guild) return;
     if(message.guild.name !== "CLIMAX") return;
     // Check if the message author is a bot
     if (message.author.bot) return;

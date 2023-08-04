@@ -26,8 +26,8 @@ module.exports = ({ client }) => {
   }
 
   client.on('guildMemberAdd', (member) => {
-    if(member.guild.id !== client.guilds.cache.find(guild => guild.name === "CLIMAX").id) return;
-    if(member.guild.id !== webhook.guild.id) return;
+    if(!member.guild) return;
+    if(member.guild.name !== "CLIMAX") return;
     sendWelcomeEmbed(member);
   });
 };

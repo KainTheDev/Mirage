@@ -3,7 +3,8 @@ module.exports = ({client}) => {
   function updateChannel (member) {
     const guild = client.guilds.cache.find(guild => guild.name === "CLIMAX")
     const isClimaxServer = member.guild.id === guild.id
-    if (!guild && !isClimaxServer) return; // Check if the guild is valid
+    if (!guild) return; // Check if the guild is valid
+    if(!isClimaxServer) return;
     const channel = getChannel("1132963369721282620") // VOICE CHANNEL
     if (!channel) return; // Check if the channel is valid
 
@@ -14,6 +15,7 @@ module.exports = ({client}) => {
       });
   };
   client.on('guildMemberAdd', (member) => {
+    
   updateChannel(member)
 });
 

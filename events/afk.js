@@ -2,7 +2,8 @@ const { EmbedBuilder } = require('discord.js');
 const ms = require("ms")
 module.exports = ({ client, db }) => {
   client.on('messageCreate', async (message) => {
-    if(message.guild.id !== client.guilds.cache.find(guild => guild.name === "CLIMAX").id) return;
+    if(!message.guild) return;
+    if(message.guild.name !== "CLIMAX") return;
     if (message.author.bot) return;
 
     const memberIsInDatabase = await db.get(`afk_${message.member.id}_${message.guild.id}`);

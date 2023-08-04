@@ -12,7 +12,8 @@ const antiSpam = new AntiSpam({
 });
 
 client.on("messageCreate", (message) => {
-  if(message.guild.id !== client.guilds.cache.find(guild => guild.name === "CLIMAX").id) return;
+  if(!message.guild) return;
+  if(message.guild.name !== "CLIMAX") return;
   antiSpam.message(message)
 });
 };

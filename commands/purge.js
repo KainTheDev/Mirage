@@ -33,8 +33,20 @@ module.exports = {
     }
 
     try {
-      const fetchedMessages = await message.channel.messages.fetch({ limit: amount+1 });
-      await message.channel.bulkDelete(fetchedMessages, true);
+      const messages = []
+      const fetchedMessages = await message.channel.messages.fetch({ limit: amount+1 })
+        fetchedMessages.map(m => {
+        if(m) {
+          const SPECIFIC_USER = message.mentions.members.first() || message.guild.members.cache.get(args[1]) || message.guild.members.cache.find(member => member.name === args[1])
+          if(SPECIFIC_USER) {
+            if(m.author.id === SPECIFIC_USER.id) {
+              return messages.push(m)
+            }
+          }
+            return messages.push(m)
+        }
+      })
+      await message.channel.bulkDelete(messages, true);
 
       const embed = new EmbedBuilder()
         .setColor('#00ff00')

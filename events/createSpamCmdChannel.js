@@ -1,5 +1,5 @@
 module.exports = ({client}) => {
-    const {ChannelType, EmbedBuilder} = require("discord.js")
+    const {ChannelType, EmbedBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder} = require("discord.js")
     client.on("messageCreate", (message) => {
     if(!message.guild) return;
     if(message.guild.name !== "CLIMAX") return;
@@ -42,14 +42,15 @@ client.on('interactionCreate', async (interaction) => {
   
     if (interaction.customId === 'create_channel') {
       const guild = client.guilds.cache.find(guild => guild.name === "CLIMAX");
-      const alreadyCreated = guild.channels.cache.find(channel => channel.name.includes(interaction.user.id))
+      const alreadyCreated = guild.channels.cache.find(channel => channel.name.includes(interaction.user.id) || channel.topic === interaction.user.id)
       if(alreadyCreated) return interaction.reply({content: `You already owned a channel (<#${alreadyCreated.id}>)!\n > **TIPS**: If you want to delete it, send \`#DELETE_CHANNEL\` in the channel.`, ephemeral: true})
-      const channelName = interaction.user.id+' - Spam commands'; // Change this to the desired channel name
+      const channelName = `${interaction.user.id}'s channel'`; // Change this to the desired channel name
   
       try {
         const createdChannel = await guild.channels.create({
           name: channelName,
           type: ChannelType.GuildText, // Change this to the desired channel type
+          topic: interaction.user.id
         });
         const date = Math.floor(Date.now() / 1000)
         const type = {
@@ -60,8 +61,28 @@ client.on('interactionCreate', async (interaction) => {
         const guide = new EmbedBuilder()
         .setTitle("Created channel - "+createdChannel.name)
         .setDescription(`ID: \`${createdChannel.id}\`\nType: \`${type[createdChannel.type]}\`\nCreated: <t:${date}:R> | \`${new Date()}\``)
-        .addFields({name: "Need help / tutorial?", value: "Check out"})
-        createdChannel.send({embeds: [guide]})
+        .addFields({name: "Need help / tutorial?", value: `Check out <#${interaction.channel.id}>`})
+        const changeVisibility = new StringSelectMenuBuilder()
+			.setCustomId('visibility')
+			.setPlaceholder('Change channel\'s visibility')
+			.addOptions(
+				new StringSelectMenuOptionBuilder()
+					.setLabel('Public')
+					.setDescription('Everyone can view and chat in your channel.')
+					.setValue('P'),
+				new StringSelectMenuOptionBuilder()
+					.setLabel('Private')
+					.setDescription('Your channel is private, no one can view / chat in it.')
+					.setValue('B')
+			);
+    const changeName = new ButtonBuilder()
+			.setCustomId('change_name')
+			.setLabel('Change channel name')
+			.setStyle(ButtonStyle.Primary);
+
+		const row = new ActionRowBuilder()
+			.addComponents(changeVisibility, changeName);
+        createdChannel.send({embeds: [guide], components: [row]})
         await interaction.reply({ content: `Channel ${createdChannel} has been created!`, ephemeral: true });
       } catch (error) {
         console.error('Error creating channel:', error);

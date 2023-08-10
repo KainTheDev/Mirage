@@ -8,9 +8,10 @@ module.exports = ({ client, db }) => {
     const memesChannel = getChannel("memes")
     const description = message.content
     let image = [...message.attachments].map(attachment => {
+      if(!attachment[1].contentType) return false;
        const newAttachment = new AttachmentBuilder(attachment[1].url, {name: `memes.${attachment[1].contentType.split("/")[1]}`, description: description || "No description"})
       return newAttachment
-    })
+    }).filter(item => item !== false);
     if(image.length === 0) image = false
     if(!message.author.bot && !image) {
       await deleteMessage(memesChannel, message.id, 1000)

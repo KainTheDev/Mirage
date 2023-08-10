@@ -54,4 +54,5 @@ for (const file of eventFiles) {
 
 client.on('error', (error) => console.log(error));
 
+require('dotenv').config()
 client.login(process.env.token);

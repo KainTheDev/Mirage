@@ -1,0 +1,7 @@
+{
+    "chalk": {
+        "titleColor": "white",
+        "descriptionColor": "green",
+        "commandNameColor": "gray"
+    }
+}

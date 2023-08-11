@@ -46,7 +46,7 @@ client.getFunctions = function () {
 
 module.exports = client
 // Load handlers dynamically
-const eventFiles = fs.readdirSync('./handlers').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync('./handlers').filter(file => file.endsWith('.js') || file.endsWith('.cjs'));
 for (const file of eventFiles) {
   const handler = require(`./handlers/${file}`);
   handler({client, db, fs, prefix});

@@ -14,7 +14,7 @@ module.exports = {
   ],
   run: async ({ client, interaction }) => {
     const message = interaction.options.getString("message")
-    const {getWebhook} = client.getFunctions()
+    const {getWebhook, getChannel} = client.getFunctions()
     const webhook = getWebhook("server-updates")
     await interaction.deferReply({ephemeral: true})
     if(interaction.user.id !== interaction.guild.ownerId) {
@@ -29,11 +29,15 @@ module.exports = {
         {
           content: `🛠⚙ New server update(s)! ⚙🛠`,
           description: message,
+          color: 1854367,
           timestamp: new Date(),
           footer: {text: "Sent by "+interaction.user.username
                    , iconURL: interaction.user.displayAvatarURL()}
         }
       ]
+    }).then(msg => {
+      const messag = getChannel("server-updates").messages.cache.get(msg.id)
+      messag.react("⚙")
     })
   },
 };

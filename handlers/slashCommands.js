@@ -10,8 +10,5 @@ module.exports = ({client, fs}) => {
 
     // You can also set aliases for the command if desired
     // Example: command.aliases = ['alias1', 'alias2'];
-
-    // Logging the loaded command
-    console.log(`Command loaded: ${slashCommand.name}`);
   }
 }

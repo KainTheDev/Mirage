@@ -25,7 +25,7 @@ module.exports = {
       .setColor('#0099ff')
       .setTitle('New Suggestion')
       .setDescription(suggestion)
-      .setFooter(`Suggested by ${interaction.member.nickname} | ${interaction.user.username}`, interaction.user.avatarURL());
+      .setFooter({text: `Suggested by ${interaction.member.nickname} | ${interaction.user.username}`, iconURL: interaction.user.avatarURL()});
 
     webhook.send({ embeds: [suggestionEmbed] })
     interaction.reply({ content: "Your suggestion has been recorded.", ephemeral: true });

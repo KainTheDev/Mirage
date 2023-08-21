@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
-const { QuickDB } = require('quick.db');
+const { QuickDB, MySQLDriver } = require('quick.db');
 const fs = require('fs');
 
 const client = new Client({

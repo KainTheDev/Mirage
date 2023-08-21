@@ -40,7 +40,7 @@ const mysqlDriver = new MySQLDriver({
   database: "Mirage",
 });
 
-await mysqlDriver.connect(); // connect to the database **this is important**
+mysqlDriver.connect().then(() => console.log("Connected to database."))
 
 const db = new QuickDB({ driver: mysqlDriver });
 

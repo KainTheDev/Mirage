@@ -4,11 +4,11 @@ module.exports = {
   description: "Make a suggestion for the server",
   cooldown: "20s",
   category: "ServerUtilities",
-  run: async ({ client, message }) => {
+  run: async ({ client, message, args}) => {
     const {getWebhook} = client.getFunctions()
     const webhook = getWebhook("suggestions")
     // Your suggestion command code
-    const suggestion = message.content.slice(message.content.indexOf(' ') + 1);
+    const suggestion = args.join(" ")
 
     if (!suggestion) {
       return message.reply("Please provide a suggestion.");

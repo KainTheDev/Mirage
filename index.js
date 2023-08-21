@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
 const { QuickDB } = require('quick.db');
 const fs = require('fs');
-
+a
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,

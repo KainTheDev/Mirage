@@ -33,7 +33,17 @@ client.commands = new Collection();
 client.slashCommands = new Collection();
 const prefix = client.config.bot.prefix;
 
-const db = new QuickDB(); // Creates a json.sqlite file in the root folder
+const mysqlDriver = new MySQLDriver({
+  host: "localhost",
+  user: "kain",
+  password: "15092020",
+  database: "Mirage",
+});
+
+await mysqlDriver.connect(); // connect to the database **this is important**
+
+const db = new QuickDB({ driver: mysqlDriver });
+
 client.getFunctions = function () {
   const functions = fs.readdirSync('./functions').filter(file => file.endsWith('.js')).map(file => {
     const functionName = file.slice(0, -3); // Extract the function name from the file name (excluding the ".js" extension)

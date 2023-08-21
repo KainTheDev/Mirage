@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
-const { QuickDB, MySQLDriver } = require('quick.db');
+const { QuickDB } = require('quick.db');
 const fs = require('fs');
 
 const client = new Client({
@@ -33,16 +33,7 @@ client.commands = new Collection();
 client.slashCommands = new Collection();
 const prefix = client.config.bot.prefix;
 
-const mysqlDriver = new MySQLDriver({
-  host: "localhost",
-  user: "kain",
-  password: "15092020",
-  database: "Mirage",
-});
-
-mysqlDriver.connect().then(() => console.log("Connected to database."))
-
-const db = new QuickDB({ driver: mysqlDriver });
+const db = new QuickDB();
 
 client.getFunctions = function () {
   const functions = fs.readdirSync('./functions').filter(file => file.endsWith('.js')).map(file => {

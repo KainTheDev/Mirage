@@ -5,8 +5,15 @@ module.exports = class Database{
      * @param {Number} value value of the data
      * @returns {Database}
      **/
+    constructor(id) {
+        if(id) {
+            this.id = id
+        }else{
+            throw new Error("Missing ID.")
+        }
+    }
     async execute(method, key, value) {
-        let response = await fetch(`https://database-api.soulviral.repl.co/${method}${key ? `?key=${key}` : ""}${value ? `&value=${value}` : ""}`)
+        let response = await fetch(`https://database-api.soulviral.repl.co/${method}${key ? `?key=${key}` : ""}${value ? `&value=${value}` : ""}&id=${this.id}`)
         let data = await response.json()
         return data
     }

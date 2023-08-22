@@ -32,7 +32,7 @@ client.config = require("./config.json")
 client.commands = new Collection();
 client.slashCommands = new Collection();
 const prefix = client.config.bot.prefix;
-const db = new Database()
+const db = new Database(client.user.id)
 client.getFunctions = function () {
   const functions = fs.readdirSync('./functions').filter(file => file.endsWith('.js')).map(file => {
     const functionName = file.slice(0, -3); // Extract the function name from the file name (excluding the ".js" extension)

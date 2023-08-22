@@ -1,23 +1,10 @@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-  description: 'Set or remove AFK status',
+  description: 'Warn a member',
   cooldown: "10s",
-  category: "userService",
-  run: async ({ client, message, args, db, prefix }) => {
-      let reason = args.join(' ');
-      if (reason.length < 1) reason = 'AFK';
-
-      const member = message.member;
-      if (member) {
-        member.reason = reason;
-        member.afkDuration = Date.now()
-        await db.set(`afk_${member.id}_${message.guild.id}`, JSON.stringify(member));
-        const embed = new EmbedBuilder()
-          .setColor('#0099ff')
-          .setDescription(`**You are now AFK.\nReason**: ${reason}`);
-
-        message.reply({ embeds: [embed] });
-    }
+  category: "ModerationCommands",
+  run: async ({  message, args, db }) => {
+    
   },
 };

@@ -4,7 +4,7 @@ module.exports = {
   description: 'Set or remove AFK status',
   cooldown: "10s",
   category: "userService",
-  run: async ({ client, message, args, db, prefix }) => {
+  run: async ({ message, args, db }) => {
       let reason = args.join(' ');
       if (reason.length < 1) reason = 'AFK';
 

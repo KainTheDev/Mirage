@@ -35,7 +35,7 @@ module.exports = ({ client, prefix, db }) => {
             msg.delete()
           }
         }, ms("5 sec"))
-      }).catch(error => console.error)
+      }).catch(console.error)
       return;
     }
 

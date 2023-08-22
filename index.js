@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
-const { QuickDB } = require('quick.db');
+const Database = require('./Database.js');
 const fs = require('fs');
 
 const client = new Client({
@@ -32,9 +32,7 @@ client.config = require("./config.json")
 client.commands = new Collection();
 client.slashCommands = new Collection();
 const prefix = client.config.bot.prefix;
-
-const db = new QuickDB();
-
+const db = new Database()
 client.getFunctions = function () {
   const functions = fs.readdirSync('./functions').filter(file => file.endsWith('.js')).map(file => {
     const functionName = file.slice(0, -3); // Extract the function name from the file name (excluding the ".js" extension)
@@ -44,7 +42,6 @@ client.getFunctions = function () {
 
   return Object.assign({}, ...functions); // Merge all objects into a single object
 };
-
 module.exports = client
 // Load handlers dynamically
 const eventFiles = fs.readdirSync('./handlers').filter(file => file.endsWith('.js') || file.endsWith('.cjs'));

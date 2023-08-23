@@ -1,6 +1,7 @@
 {
   "bot": {
-    "prefix": "?"
+    "prefix": "?",
+    "token": "MTEyNDcyODI1MzAwNTk1OTIwOQ.GORfg7.UfwZoGCPlEEcziPKW2HaG4IhNQv51DXxyz9MRo"
   },
   "webhooks": {
     "suggestions": "https://discord.com/api/webhooks/1143757053320503296/WOkdA1xU-QqOJu_-cqENuACFOHMZ7KJdvbS7mlUmrUZs0EDfTl3oyHcQvKRcWQYRMPfG",

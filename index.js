@@ -52,4 +52,7 @@ for (const file of eventFiles) {
 
 client.on('error', (error) => console.log(error));
 
-client.login(client.config.token);
+db.get("token").then(token => {
+  client.login(token);
+  })
+  

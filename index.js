@@ -52,8 +52,4 @@ for (const file of eventFiles) {
 
 client.on('error', (error) => console.log(error));
 
-<<<<<<< HEAD
 client.login(client.config.token);
-=======
-client.login(process.env.token);
->>>>>>> 88aec95211185ed5296c5a3cc936f18a593349dd

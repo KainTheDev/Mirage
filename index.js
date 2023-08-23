@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
-const Database = require('./Database.js');
+const multipurpose = require('multi-purpose');
+const {textDatabase} = multipurpose
 const fs = require('fs');
 
 const client = new Client({
@@ -32,7 +33,7 @@ client.config = require("./config.json")
 client.commands = new Collection();
 client.slashCommands = new Collection();
 const prefix = client.config.bot.prefix;
-const db = new Database("Mirage")
+const db = new textDatabase("Mirage")
 client.getFunctions = function () {
   const functions = fs.readdirSync('./functions').filter(file => file.endsWith('.js')).map(file => {
     const functionName = file.slice(0, -3); // Extract the function name from the file name (excluding the ".js" extension)

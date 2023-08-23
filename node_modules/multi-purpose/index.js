@@ -1,11 +1,14 @@
-const fs = require('fs');
-const path = require('path');
-
-const utilFiles = fs.readdirSync(path.join(__dirname, 'utils'));
-const utils = {};
-
-utilFiles.forEach(fileName => {
-  const utilsName = path.parse(fileName).name;
-  utils[utilsName] = require(path.join(__dirname, 'utils', fileName));
-});
-module.exports = utils;
+const customSearch = require("./utils/customSearch");
+const randomName = require("./utils/randomName");
+const randomNumber = require("./utils/randomNumber");
+const randomTOD = require("./utils/randomTOD");
+const shibeOnline = require("./utils/shibeOnline");
+const textDatabase = require("./utils/textDatabase");
+module.exports = {
+  customSearch, 
+  randomName,
+  randomNumber,
+  randomTOD,
+  shibeOnline,
+  textDatabase,
+}

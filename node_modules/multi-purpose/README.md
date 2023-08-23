@@ -1,10 +1,10 @@
 # Multi-Purpose Package
 
-## Description
+## 1: Description
 
-Welcome to the Multi-Purpose package, a versatile toolkit that offers a wide range of functionalities to enhance your projects. This package includes several useful functions, each designed to simplify various tasks. Whether you need cute animal pictures, random numbers, language translation, or even personalized name generation, Multi-Purpose has got you covered!
+Multi-purpose - a package used for variety purpose. For more information, please read in the docs below (third header).
 
-## Installation
+## 2: Installation
 
 To get started with the Multi-Purpose package, you can install it using npm:
 
@@ -12,7 +12,7 @@ To get started with the Multi-Purpose package, you can install it using npm:
 npm install multi-purpose
 ```
 
-## Documentation
+## 3: Documentation
 [Click here](https://docs.google.com/document/d/1SaQZxuw2Ddqvuodz2QoIuX1kwDU4tgjWvt-xABikkkE/edit?usp=sharing) for docs.
 
 ## Contribution

@@ -1,6 +1,5 @@
 const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
-const multipurpose = require('multi-purpose');
-const {textDatabase} = multipurpose
+const {textDatabase} = require("multi-purpose")
 const fs = require('fs');
 
 const client = new Client({

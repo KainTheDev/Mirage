@@ -52,7 +52,4 @@ for (const file of eventFiles) {
 
 client.on('error', (error) => console.log(error));
 
-db.get("token").then(token => {
-  client.login(token);
-  })
-  
+client.login(process.env.token)
